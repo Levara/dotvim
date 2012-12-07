@@ -3,6 +3,10 @@
 
 set nocompatible " choose no compatibility with legacy vi
 call pathogen#infect()
+"" To update pathogen run:
+""curl -Sso ~/.vim/autoload/pathogen.vim \https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+"" After a new plugin is installed, run :Helptags command in vim command line
+
 syntax enable
 filetype plugin indent on " load file type plugins + indentation
 set encoding=utf-8
@@ -24,7 +28,7 @@ set guioptions-=r  "" remove right scrollbar
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window.
-  set lines=999 columns=999
+  set lines=50 columns=160
 endif
 "" ================================
 
@@ -40,7 +44,7 @@ if has('statusline')
   " Broken down into easily includeable segments
   set statusline=\ %f\ " Filename
   "set statusline+=%w%h%m%r " Options
-  "" set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=%{fugitive#statusline()} " Git Hotness
   set statusline+=\ [%{&ff}/%Y] " filetype
   set statusline+=\ %<[%{getcwd()}] " current dir
   set statusline+=%=\ %-3.(%l,%c%V%)\ %p%% " Right aligned file nav info
