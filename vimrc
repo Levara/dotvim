@@ -14,10 +14,21 @@ set cursorline cursorcolumn "highlight the current cursor line
 set history=200 "larger history
 set relativenumber "show line numbers
 
+
+"" =================================
+"" ========= G U I   OPTIONS =======
 "" Remove toolbar and scrollbars from GVIM
 set guioptions-=T  "" remove toolbar
 set guioptions-=L  "" remove left scrollbar
 set guioptions-=r  "" remove right scrollbar
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window.
+  set lines=999 columns=999
+endif
+"" ================================
+
+
 
 "" set default working directory to Dropbox
 chdir /home/levara/Dropbox
@@ -26,7 +37,6 @@ set autochdir  "" automagicaly set working dir to current dir
 "" Statusline magic: Stolen from github.com/spf13
 if has('statusline')
   set laststatus=2
-
   " Broken down into easily includeable segments
   set statusline=\ %f\ " Filename
   "set statusline+=%w%h%m%r " Options
