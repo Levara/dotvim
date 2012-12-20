@@ -136,6 +136,10 @@ nnoremap L $
 vnoremap H ^
 vnoremap L $
 
+"" mapping for session save and load
+command Swin mksession! ~/mysession.vim 
+command Lwin source ~/mysession.vim
+
 "" operator mapping ...
 "" ...inside next parentheses
 onoremap in( :<c-u>normal! f(vi(<cr>
