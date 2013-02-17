@@ -103,11 +103,25 @@ nnoremap <leader>orc :vsplit $MYVIMRC<cr>
 inoremap jj <Esc>
 inoremap <esc> <esc>:echo "budalo koristi j j!!!!"<cr>
 
-"" Map K to split lines, just like J is used to join lines
-nnoremap K <esc>i<cr><esc>k$
+"" Map leader+K to split lines, leader+j to join lines
+nnoremap <leader>k <esc>i<cr><esc>k$
+nnoremap <leader>j J 
+vnoremap <leader>j J
+"" map J and K to 15line jump up-down, H and L to 15char jump left-right
+nnoremap J 15j
+nnoremap K 15k
+nnoremap L 15l
+nnoremap H 15h
+vnoremap J 15j
+vnoremap K 15k
+vnoremap L 15l
+vnoremap H 15h
 
 "" See diff between original file and current version
-nnoremap <leader>diff :w !diff % -<cr>
+command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+	 	\ | wincmd p | diffthis
+nnoremap <leader>diff :DiffOrig
+
 
 "" Force using hjkl for moving around!
 nnoremap <Left> :echo "no!"<cr>
@@ -119,22 +133,12 @@ nnoremap <Down> :echo "no!"<cr>
 ""inoremap <left> <esc>:echo "no!"<cr>i
 ""inoremap <right> <esc>:echo "no!"<cr>i
 
-"" map keys to move lines up and down
-nnoremap <leader>j ddp
-nnoremap <leader>k ddkP
-
 "" map keys to uppercase a word with ctrl + u
 inoremap <c-u> <esc>viwU<esc>i
 nnoremap <c-u> viwU<esc>
 
 "" map U to redo
 nnoremap U <c-R>
-
-"" map HL to beggining and end of line
-nnoremap H ^
-nnoremap L $
-vnoremap H ^
-vnoremap L $
 
 "" mapping for session save and load
 command Swin mksession! ~/mysession.vim 
