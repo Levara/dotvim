@@ -2,7 +2,9 @@
 
 
 set nocompatible " choose no compatibility with legacy vi
+filetype off
 call pathogen#infect()
+call pathogen#helptags()
 "" To update pathogen run:
 ""curl -Sso ~/.vim/autoload/pathogen.vim \https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 "" After a new plugin is installed, run :Helptags command in vim command line
@@ -32,7 +34,8 @@ if has("gui_running")
 endif
 "" ================================
 
-
+"" use 256 colors
+set t_Co=256
 
 "" set default working directory to Dropbox
 chdir /home/levara/Dropbox
@@ -66,7 +69,8 @@ set ignorecase " searches are case insensitive...
 set smartcase " ... unless they contain at least one capital letter
 "" Map <delete> to remove highlighting
 nnoremap  <delete> :noh<CR>
-
+"" enter in normal mode opens new line
+nnoremap <CR> O<esc>
 
 "" Filename Tab completition
 set wildmode=longest,list,full
@@ -94,6 +98,14 @@ nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>tq :tabclose<cr>
 "" ====== END TABMAGIC ======""
 
+
+"" Map :Q and :W to :q and :w
+command Q :q
+command W :w
+
+"" Copying to clipboard -- Requires installation of XCLIP program
+"" First select text in visual mode
+vnoremap <leader>cp :w !xclip -selection clipboard <cr>
 
 "" Opening and reloading of my .vimrc configuration
 nnoremap <leader>rc :so $MYVIMRC<cr>
@@ -162,6 +174,13 @@ set undofile               " use persistent undo
 
 set colorcolumn=85
 set textwidth=79
+
+set splitright
+
+
+""-----------------------------------------------
+""-------------- GCC compiling ------------------
+nnoremap <F8> :w<CR>:!clear && gcc -o ruuun % -O0 -lm && ./ruuun <CR>
 
 ""------------------------------------------------
 "" Filter HTML content through tidy
